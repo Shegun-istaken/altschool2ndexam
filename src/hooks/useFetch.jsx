@@ -1,71 +1,70 @@
-import { useEffect, useReducer, useRef } from 'react'
-
+import { useEffect, useReducer, useRef } from "react";
 
 function useFetch(url, options) {
-  const cache = useRef({})
+  const cache = useRef({});
 
-  const cancelRequest = useRef(false)
+  const cancelRequest = useRef(false);
 
   const initialState = {
     error: undefined,
     data: undefined,
-    loading: false
-  }
+    loading: false,
+  };
 
   const fetchReducer = (state, action) => {
     switch (action.type) {
-      case 'loading':
-        return { ...initialState, loading: true }
-      case 'fetched':
-        return { ...initialState, data: action.payload, loading: false }
-      case 'error':
-        return { ...initialState, error: action.payload, loading: false }
+      case "loading":
+        return { ...initialState, loading: true };
+      case "fetched":
+        return { ...initialState, data: action.payload, loading: false };
+      case "error":
+        return { ...initialState, error: action.payload, loading: false };
       default:
-        return state
+        return state;
     }
-  }
+  };
 
-  const [state, dispatch] = useReducer(fetchReducer, initialState)
+  const [state, dispatch] = useReducer(fetchReducer, initialState);
 
   useEffect(() => {
-    if (!url) return
+    if (!url) return;
 
-    cancelRequest.current = false
+    cancelRequest.current = false;
 
     const fetchData = async () => {
-      dispatch({ type: 'loading' })
+      dispatch({ type: "loading" });
 
       if (cache.current[url]) {
-        dispatch({ type: 'fetched', payload: cache.current[url] })
-        return
+        dispatch({ type: "fetched", payload: cache.current[url] });
+        return;
       }
 
       try {
-        const response = await fetch(url, options)
+        const response = await fetch(url, options);
         if (!response.ok) {
-          throw new Error(response.statusText)
+          throw new Error(response.statusText);
         }
 
-        const data = (await response.json())
-        cache.current[url] = data
-        if (cancelRequest.current) return
+        const data = await response.json();
+        cache.current[url] = data;
+        if (cancelRequest.current) return;
 
-        dispatch({ type: 'fetched', payload: data })
+        dispatch({ type: "fetched", payload: data });
       } catch (error) {
-        if (cancelRequest.current) return
+        if (cancelRequest.current) return;
 
-        dispatch({ type: 'error', payload: error })
+        dispatch({ type: "error", payload: error });
       }
-    }
+    };
 
-    fetchData()
+    fetchData();
 
     return () => {
-      cancelRequest.current = true
-    }
-  }, [options, url])
+      cancelRequest.current = true;
+    };
+  }, [options, url]);
 
-  return state
+  return state;
 }
 
-export default useFetch
+export default useFetch;

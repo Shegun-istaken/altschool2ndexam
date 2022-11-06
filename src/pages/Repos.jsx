@@ -1,6 +1,7 @@
 import useFetch from "../hooks/useFetch";
 import { Link, Outlet } from "react-router-dom";
 import ErrorBoundary from "../components/ErrorBoundary";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function Repo() {
   const { loading, error, data } = useFetch(
@@ -21,6 +22,10 @@ function Repo() {
 
   return (
     <div className="maindiv">
+      <Helmet>
+        <title>Shegun's Repositories</title>
+        <meta name="description" content="Assess the full list of Shegun's repositories here" />
+      </Helmet>
       <h1 className="main-header">My Repositories</h1>
       <Outlet />
 
@@ -38,7 +43,9 @@ function Repo() {
 function Repos() {
   return (
     <ErrorBoundary>
+      <HelmetProvider>
       <Repo />
+      </HelmetProvider>
     </ErrorBoundary>
   );
 }
