@@ -20,6 +20,7 @@ function RepoPage() {
       <>
         {data?.map((each) => (
           <div key={each.id} className="page">
+            {/* eslint-disable-next-line */}
             {each.id == userId && (
               <>
                 <h1>

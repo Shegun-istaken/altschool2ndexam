@@ -63,7 +63,7 @@ function useFetch(url, options) {
     return () => {
       cancelRequest.current = true
     }
-  }, [url])
+  }, [])
 
   return state
 }
