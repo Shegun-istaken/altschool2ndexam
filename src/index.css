@@ -84,3 +84,54 @@ div.missing{
   align-items: center;
   margin-top: 144px;
 }
+
+div.pagination-div{
+  display: flex;
+  padding: 0% 30%;
+}
+
+div.pagination-jump{
+  display:flex;
+  justify-content: center;
+  gap:4%;
+}
+
+div.pagination-jump button{
+  width: 10%;
+
+}
+
+button.pagination-buttons{
+  background-color: transparent;
+  font-size: 14px;
+}
+
+form.homePage{
+  display:flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px auto 0 auto;
+  text-align: center;
+  gap: 8px;
+}
+form.homePage label{
+  font-size:24px;
+  font-weight: 700;
+}
+
+form.homePage p{
+  font-size:18px;
+  color: hsla(0, 0%, 100%, 0.5);
+}
+
+form.homePage input{
+  padding: 16px;
+}
+
+button#head{
+  background-color: white;
+  width: 40%;
+  padding: 8px 0px;
+  display: block;
+  margin: 0 auto;
+}

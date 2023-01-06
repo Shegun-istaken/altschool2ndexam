@@ -1,11 +1,13 @@
 import useFetch from "../hooks/useFetch";
-import { Link, useParams} from "react-router-dom";
+import { Link, useParams, useLocation} from "react-router-dom";
 
 function RepoPage() {
     const { userId } = useParams();
-  
+    const location = useLocation()
+    const user = location.state
+
     const { loading, error, data } = useFetch(
-      `https://api.github.com/users/shegun-istaken/repos`
+      `https://api.github.com/users/${user}/repos`
     );
   
     if (loading) {

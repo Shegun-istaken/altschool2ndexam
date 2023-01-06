@@ -7,6 +7,7 @@ import Repo from "./pages/Repos";
 import RepoPage from "./components/RepoPage";
 import Missing from "./pages/Missing";
 import ErrorTest from "./pages/TestError";
+import Home from "./pages/Home";
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -15,9 +16,10 @@ root.render(
     <ErrorBoundary>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Repo />}>
+          <Route path="/" element={<Home />} />
+            <Route path="/repos" element={<Repo />}>
             <Route path="/repos/:userId" element={<RepoPage />} />
-          </Route>
+            </Route>
 
           {/* The Error Test tests the Error Boundary */}
           <Route path="/errorTest" element={<ErrorTest />} />
