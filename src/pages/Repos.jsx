@@ -24,9 +24,7 @@ function Repo() {
   }
 
   const onePage = 5;
-  const total = data?.length;
   const pages = Math.ceil(data?.length / onePage);
-  const skip = page * onePage - onePage;
 
   function handleClick() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
